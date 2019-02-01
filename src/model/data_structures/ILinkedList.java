@@ -9,6 +9,24 @@ package model.data_structures;
  */
 public interface ILinkedList<T> extends Iterable<T> {
 
-	Integer getSize();
+	Integer darTamano();
+	
+	void anadir(T elemento);
+	
+	void anadirEn(int i, T elemento);
+	
+	void eliminar(T dato);
+	
+	void eliminarEn(int i);
+	
+	T recuperarEnPos(int i);
+	
+	void reiniciarRecorrido( );
+	
+	T darActual( );
+	
+	void avanzar( );
+	
+	void retroceder( );
 
 }
