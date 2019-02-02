@@ -67,6 +67,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 
 
 	@Override
+	// Debe ser posible implementar este metodo con eliminarEn, pero este lo implemente primero
 	public void eliminar(T dato) {
 		if (tamano == 0) return;
 		
@@ -81,62 +82,88 @@ public class LinkedList<T> implements ILinkedList<T> {
 				} // Entonces el tamano es al menos 2
 				else if (nodo == primero) {
 					primero = primero.siguiente();
-					primero.asignarAnterior(null);
+					primero.quitarAnterior();  // Forma 1
 				}
 				else if(nodo == ultimo) {
 					ultimo = ultimo.anterior();
-					ultimo.asignarSiguiente(null);
+					ultimo.asignarSiguiente(null); // Forma 2
 				} else { // Aqui se llega solo si el tamano es al menos 3
-					
+					Node<T> nodoAnt = nodo.anterior();
+					nodo.anterior().asignarSiguiente(nodo.siguiente()); //TODO problematic?
+					nodo = nodoAnt; //TODO problematic?
 				}
 				tamano--; //TODO Check if this works with the for loop
 			}
 			
 			nodo = nodo.siguiente();
 		}
-		
 	}
 
 
 	@Override
 	public void eliminarEn(int i) {
 		// TODO Auto-generated method stub
+		if (i >= tamano || i < 0) throw new IllegalArgumentException("No es posible encontrar esa posicion");
 		
+		Node<T> nodo = primero;
+		for (int k = 0; k < i; k++) {
+			nodo = nodo.siguiente();
+		}
+		
+		if (tamano == 1) {
+			primero = null;
+			ultimo = null;
+			tamano = 0;
+			return;
+		} // Entonces el tamano es al menos 2
+		else if (nodo == primero) {
+			primero = primero.siguiente();
+			primero.quitarAnterior();  // Forma 1
+		}
+		else if(nodo == ultimo) {
+			ultimo = ultimo.anterior();
+			ultimo.asignarSiguiente(null); // Forma 2
+		} else { // Aqui se llega solo si el tamano es al menos 3
+			Node<T> nodoAnt = nodo.anterior();
+			nodo.anterior().asignarSiguiente(nodo.siguiente()); //TODO problematic?
+			nodo = nodoAnt; //TODO problematic?
+		}
 	}
-
 
 	@Override
 	public T recuperarEnPos(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		if (i >= tamano || i < 0) throw new IllegalArgumentException("No es posible encontrar esa posicion");
+		
+		Node<T> nodo = primero;
+		for (int k = 0; k < i; k++) {
+			nodo = nodo.siguiente();
+		}
+		
+		return nodo.darDato();
 	}
 
 
 	@Override
 	public void reiniciarRecorrido() {
-		// TODO Auto-generated method stub
-		
+		actual = primero;
 	}
 
 
 	@Override
 	public T darActual() {
-		// TODO Auto-generated method stub
-		return null;
+		return actual.darDato();
 	}
 
 
 	@Override
 	public void avanzar() {
-		// TODO Auto-generated method stub
-		
+		actual = actual.siguiente();
 	}
 
 
 	@Override
 	public void retroceder() {
-		// TODO Auto-generated method stub
-		
+		actual = actual.anterior();
 	}
 
 
