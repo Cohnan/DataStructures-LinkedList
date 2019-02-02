@@ -4,16 +4,15 @@ package model.data_structures;
 
 public class Node<T> {
 	
-	public T dato;
-	public Node<T> siguiente;
-	public Node<T> anterior;
+	private T dato;
+	private Node<T> siguiente;
+	private Node<T> anterior;
 	
-	public Node (T dato, Node<T> nSiguiente){
+	public Node (T dato){
 		dato = dato;
-		siguiente = nSiguiente;
 	}
 	
-	/*public T darDato() {
+	public T darDato() {
 		return dato;
 	}
 	
@@ -23,5 +22,21 @@ public class Node<T> {
 	
 	public Node<T> siguiente(){
 		return siguiente;
-	}*/
+	}
+	
+	// Hace los dos links al tiempo, sin entrar en un loop. Implica que cada nodo solo puede pertenecer 
+	// a una lista.
+	public void asignarSiguiente(Node<T> siguiente) {
+		if (this.siguiente == siguiente) return;
+		this.siguiente = siguiente;
+		siguiente.asignarAnterior(this);
+	}
+	
+	// Hace los dos links al tiempo, sin entrar en un loop. Implica que cada nodo solo puede pertenecer 
+	// a una lista.	
+	public void asignarAnterior(Node<T> anterior) {
+		if (this.anterior == anterior) return;
+		this.anterior = anterior;
+		anterior.asignarSiguiente(this);
+	}
 }
