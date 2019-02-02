@@ -32,21 +32,15 @@ public class LinkedList<T> implements ILinkedList<T> {
 	public void anadir(T elemento) {
 		if (tamano == 0) {
 			primero = new Node<T>(elemento);
-			
-			/*
-			 * No solo es innecesario, sino que es problematico 
-			 * decir lo siguiente por mi implementacion de asignarSiguiente y asignarAnterior en Node.java
-			 *  
-			 * primero.asignarSiguiente(null);
-			 * primero.asignarAnterior(null);*/ 
-			tamano++;
+			tamano = 1;
 			return;
 		}
 		
-		Node<T> ultimoPrev = ultimo;
+		Node<T> ultimoViejo = ultimo;
 		ultimo = new Node(elemento);
-		ultimoPrev.asignarSiguiente(ultimo);
-		ultimo.asignarAnterior(ultimoPrev);
+		ultimoViejo.asignarSiguiente(ultimo);
+		// ultimo.asignarAnterior(ultimoViejo);
+		
 		tamano++;
 	}
 
@@ -57,16 +51,17 @@ public class LinkedList<T> implements ILinkedList<T> {
 		
 		if (i == tamano) {anadir(elemento); tamano++; return;}
 		
-		Node<T> viejoActual = primero;
+		Node<T> actualViejo = primero;
+		// Al terminar el for, viejoActual es el nodo que actualmente esta en la posicion i (empezando en 0)
 		for (int k = 0; k < i; k++) 
-			viejoActual = viejoActual.siguiente();
+			actualViejo = actualViejo.siguiente();
 		
-		Node<T> nuevoActual = new Node<T>(elemento);
-		nuevoActual.asignarSiguiente(viejoActual);
-		nuevoActual.asignarAnterior(viejoActual.anterior());
+		Node<T> actualNuevo = new Node<T>(elemento);
+		actualNuevo.asignarAnterior(actualViejo.anterior());
+		actualNuevo.asignarSiguiente(actualViejo);
 		
-		viejoActual.anterior().asignarSiguiente(nuevoActual);
-		viejoActual.siguiente().asignarAnterior(nuevoActual);
+		/*viejoActual.anterior().asignarSiguiente(nuevoActual);
+		viejoActual.siguiente().asignarAnterior(nuevoActual);*/
 		tamano++;
 	}
 
@@ -75,25 +70,26 @@ public class LinkedList<T> implements ILinkedList<T> {
 	public void eliminar(T dato) {
 		if (tamano == 0) return;
 		
-		Node<T> conDato;
 		Node<T> nodo = primero;
 		for (int i = 0; i < tamano; i++) { // El dato puede que este mas de una vez
-			if (nodo.darDato().equals(dato)) {
-				tamano--; //TODO Check if this works
-				conDato = nodo;
+			if (nodo.darDato().equals(dato)) { //TODO No se si solo queremos borrar cuando el dato sea el mismo objeto
 				if (tamano == 1) {
 					primero = null;
 					ultimo = null;
-					break;
-				}
+					tamano = 0;
+					return;
+				} // Entonces el tamano es al menos 2
 				else if (nodo == primero) {
-					
+					primero = primero.siguiente();
+					primero.asignarAnterior(null);
 				}
 				else if(nodo == ultimo) {
-					
-				} else {
+					ultimo = ultimo.anterior();
+					ultimo.asignarSiguiente(null);
+				} else { // Aqui se llega solo si el tamano es al menos 3
 					
 				}
+				tamano--; //TODO Check if this works with the for loop
 			}
 			
 			nodo = nodo.siguiente();
