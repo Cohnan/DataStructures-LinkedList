@@ -11,6 +11,7 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		// TODO Auto-generated method stub
 		
 	}
+
 		
 	@Override
 	public LinkedList <VOMovingViolations> getMovingViolationsByViolationCode (String violationCode) {
