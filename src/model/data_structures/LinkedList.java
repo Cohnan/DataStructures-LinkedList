@@ -18,8 +18,19 @@ public class LinkedList<T> implements ILinkedList<T> {
 	
 	@Override
 	public Iterator<T> iterator() {
+		Iterator<T> it = new Iterator<T>() {
+            @Override
+            public boolean hasNext() {
+                return tieneSiguiente();
+            }
+
+            @Override
+            public T next() {
+                return avanzar();
+            }
+        };
+        return it;
 		
-		return null;
 	}
 
 	@Override
@@ -154,17 +165,31 @@ public class LinkedList<T> implements ILinkedList<T> {
 
 
 	@Override
-	public void avanzar() {
+	public T avanzar() {
+		if (!tieneSiguiente()) throw new UnsupportedOperationException("No hay elemento al cual avanzar");
 		actual = actual.siguiente();
+		return actual.darDato();
 	}
 
 
 	@Override
-	public void retroceder() {
+	public T retroceder() {
+		if (!tieneAnterior()) throw new UnsupportedOperationException("No hay elemento al cual retroceder");
 		actual = actual.anterior();
+		return actual.darDato();
+	}
+	
+	@Override
+	public boolean tieneSiguiente() {
+		return actual.siguiente() != null;
+	}
+	
+	@Override
+	public boolean tieneAnterior() {
+		return actual.anterior() != null;
 	}
 
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		

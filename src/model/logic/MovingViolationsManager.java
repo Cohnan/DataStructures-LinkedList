@@ -18,8 +18,7 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		CSVReader reader = null;
 		try {
 			reader = new CSVReader(new FileReader("data/Moving_Violations_Issued_in_January_2018.csv"));
-			listaInfracciones = new LinkedList<VOMovingViolations>();
-			
+			listaInfracciones = new LinkedList<VOMovingViolations>(); // TODO handle header
 			VOMovingViolations infraccion;
 		    for (String[] row : reader) {
 		    	infraccion = new VOMovingViolations(row);
@@ -46,7 +45,11 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		
 		LinkedList<VOMovingViolations> lista = new LinkedList<>();
 		
-		for (VOMovingViolations infraccion : listaInfracciones) {
+		VOMovingViolations infraccion;
+		listaInfracciones.reiniciarRecorrido();
+		//for (VOMovingViolations infraccion : listaInfracciones) {
+		while (listaInfracciones.tieneSiguiente()) {
+			infraccion = listaInfracciones.avanzar();
 			if (infraccion.getViolationCode().equals(violationCode))
 				lista.anadir(infraccion);
 		}

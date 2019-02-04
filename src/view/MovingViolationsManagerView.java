@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import controller.Controller;
 import model.data_structures.ILinkedList;
+import model.data_structures.LinkedList;
 import model.vo.VOMovingViolations;
 
 public class MovingViolationsManagerView 
@@ -25,10 +26,10 @@ public class MovingViolationsManagerView
 					break;
 					
 				case 2:
-					System.out.println("Ingrese el código de la infracción:");
+					System.out.println("Ingrese el cï¿½digo de la infracciï¿½n:");
 					String violationCode = sc.next();
 					LinkedList<VOMovingViolations> violationsByCodeList = Controller.getMovingViolationsByViolationCode (violationCode);
-					System.out.println("Se encontraron "+ violationsByCodeList.getSize() + " elementos");
+					System.out.println("Se encontraron "+ violationsByCodeList.darTamano() + " elementos");
 					for (VOMovingViolations violations : violationsByCodeList) 
 					{
 						System.out.println(violations.objectId() + " " + violations.getLocation() + " " + violations.getTicketIssueDate()+ " " + violations.getTotalPaid() + " " + violations.getAccidentIndicator()+ " " + violations.getViolationDescription());;
@@ -39,7 +40,7 @@ public class MovingViolationsManagerView
 					System.out.println("Ingrese el indicador de Accidente que quiere consulta (No/Yes):");
 					String accidentIndicator = sc.next();
 					LinkedList<VOMovingViolations> violationsByAccidentsList = Controller.getMovingViolationsByAccident (accidentIndicator);
-					System.out.println("Se encontraron "+ violationsByAccidentsList.getSize() + " elementos");
+					System.out.println("Se encontraron "+ violationsByAccidentsList.darTamano() + " elementos");
 					for (VOMovingViolations violations : violationsByAccidentsList) 
 					{
 						System.out.println(violations.objectId() + " " + violations.getLocation() + " " + violations.getTicketIssueDate()+ " " + violations.getTotalPaid() + " " + violations.getAccidentIndicator()+ " " + violations.getViolationDescription());;
@@ -58,10 +59,10 @@ public class MovingViolationsManagerView
 		System.out.println("---------ISIS 1206 - Estructuras de datos----------");
 		System.out.println("---------------------Taller 2----------------------");
 		System.out.println("1. Cree una nueva coleccion de infracciones en movimiento");
-		System.out.println("2. Dar listado de infracciones reportadas dado un código de infracción");
+		System.out.println("2. Dar listado de infracciones reportadas dado un cï¿½digo de infracciï¿½n");
 		System.out.println("3. Dar listado de infracciones reportadas de acuerdo a si hay o no accidente reportado");
 		System.out.println("4. Salir");
-		System.out.println("Digite el número de opción para ejecutar la tarea, luego presione enter: (Ej., 1):");
+		System.out.println("Digite el nï¿½mero de opciï¿½n para ejecutar la tarea, luego presione enter: (Ej., 1):");
 		
 	}
 }

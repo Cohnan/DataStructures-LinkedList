@@ -25,8 +25,12 @@ public interface ILinkedList<T> extends Iterable<T> {
 	
 	T darActual( );
 	
-	void avanzar( );
+	T avanzar( );
 	
-	void retroceder( );
+	T retroceder( );
+	
+	boolean tieneSiguiente();
+	
+	boolean tieneAnterior();
 
 }
