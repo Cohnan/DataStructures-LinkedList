@@ -124,9 +124,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 			ultimo = ultimo.anterior();
 			ultimo.asignarSiguiente(null); // Forma 2
 		} else { // Aqui se llega solo si el tamano es al menos 3
-			Node<T> nodoAnt = nodo.anterior();
-			nodo.anterior().asignarSiguiente(nodo.siguiente()); //TODO problematic?
-			nodo = nodoAnt; //TODO problematic?
+			(nodo.anterior()).asignarSiguiente(nodo.siguiente()); //TODO problematic?
 		}
 	}
 
