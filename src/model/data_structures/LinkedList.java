@@ -52,8 +52,8 @@ public class LinkedList<T> implements ILinkedList<T> {
 		Node<T> ultimoViejo = ultimo;
 		ultimo = new Node<T>(elemento);
 		ultimoViejo.asignarSiguiente(ultimo);
-		System.out.println("Se ha annadido el nodo con elemento: " + ultimo.darDato()); // TEST
-		System.out.println("El dato que anteriormente era el ultimo es ahora: " + ultimoViejo.darDato());
+		//System.out.println("Se ha annadido el nodo con elemento: " + ultimo.darDato()); // TEST
+		//System.out.println("El dato que anteriormente era el ultimo es ahora: " + ultimoViejo.darDato()); // TEST
 		// ultimo.asignarAnterior(ultimoViejo);
 		
 		tamano++;

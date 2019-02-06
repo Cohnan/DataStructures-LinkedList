@@ -53,8 +53,8 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		VOMovingViolations infraccion = listaInfracciones.darActual();
 		//for (VOMovingViolations infraccion : listaInfracciones) {
 		do {
-			System.out.println("\nMirando a la infraccion para mirar su violatiocode: " + infraccion.objectId());
-			System.out.println("El violation code de esta infraccion es: " + infraccion.getViolationCode());
+			//System.out.println("\nMirando a la infraccion para mirar su violatiocode: " + infraccion.objectId()); // TEST
+			//System.out.println("El violation code de esta infraccion es: " + infraccion.getViolationCode()); // TEST
 			if (infraccion.getViolationCode().equals(violationCode)) {
 				lista.anadir(infraccion);
 			}
@@ -67,12 +67,18 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 	@Override
 	public LinkedList <VOMovingViolations> getMovingViolationsByAccident(String accidentIndicator) {
 		
-		LinkedList<VOMovingViolations> lista = new LinkedList<>();
+LinkedList<VOMovingViolations> lista = new LinkedList<>();
 		
-		for (VOMovingViolations infraccion : listaInfracciones) {
-			if (infraccion.getAccidentIndicator().equals(accidentIndicator))
+		listaInfracciones.reiniciarRecorrido();
+		VOMovingViolations infraccion = listaInfracciones.darActual();
+		//for (VOMovingViolations infraccion : listaInfracciones) {
+		do {
+			
+			if (infraccion.getAccidentIndicator().equals(accidentIndicator)) {
 				lista.anadir(infraccion);
-		}
+			}
+			infraccion = listaInfracciones.avanzar();
+		} while (listaInfracciones.tieneSiguiente());
 		
 		return lista;
 	}	

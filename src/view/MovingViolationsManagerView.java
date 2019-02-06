@@ -32,7 +32,7 @@ public class MovingViolationsManagerView
 					System.out.println("Se encontraron "+ violationsByCodeList.darTamano() + " elementos");
 					for (VOMovingViolations violations : violationsByCodeList) 
 					{
-						System.out.println(violations.objectId() + " " + violations.getLocation() + " " + violations.getTicketIssueDate()+ " " + violations.getTotalPaid() + " " + violations.getAccidentIndicator()+ " " + violations.getViolationDescription());;
+						System.out.println(violations.objectId() + " " + violations.getLocation() + " " + violations.getTicketIssueDate()+ " " + violations.getTotalPaid() + " " + violations.getAccidentIndicator()+ " " + violations.getViolationDescription());// + " " + violations.getViolationCode());;
 					}
 					break;
 					
