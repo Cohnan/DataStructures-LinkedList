@@ -45,13 +45,15 @@ public class LinkedList<T> implements ILinkedList<T> {
 			primero = new Node<T>(elemento);
 			tamano = 1;
 			ultimo = primero;
+			actual = primero;
 			return;
 		}
 		
 		Node<T> ultimoViejo = ultimo;
 		ultimo = new Node<T>(elemento);
 		ultimoViejo.asignarSiguiente(ultimo);
-		System.out.println("Se ha annadido el nodo con elemento: " + elemento);
+		System.out.println("Se ha annadido el nodo con elemento: " + ultimo.darDato()); // TEST
+		System.out.println("El dato que anteriormente era el ultimo es ahora: " + ultimoViejo.darDato());
 		// ultimo.asignarAnterior(ultimoViejo);
 		
 		tamano++;
@@ -115,7 +117,6 @@ public class LinkedList<T> implements ILinkedList<T> {
 
 	@Override
 	public void eliminarEn(int i) {
-		// TODO Auto-generated method stub
 		if (i >= tamano || i < 0) throw new IllegalArgumentException("No es posible encontrar esa posicion");
 		
 		Node<T> nodo = primero;
@@ -139,6 +140,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 		} else { // Aqui se llega solo si el tamano es al menos 3
 			(nodo.anterior()).asignarSiguiente(nodo.siguiente()); //TODO problematic?
 		}
+		tamano--;
 	}
 
 	@Override

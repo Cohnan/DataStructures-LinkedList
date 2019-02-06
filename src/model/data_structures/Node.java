@@ -9,7 +9,7 @@ public class Node<T> {
 	private Node<T> anterior;
 	
 	public Node (T dato){
-		dato = dato;
+		this.dato = dato;
 	}
 	
 	public T darDato() {

@@ -24,7 +24,7 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		    for (String[] row : reader) {
 		    	infraccion = new VOMovingViolations(row);
 		    	listaInfracciones.anadir(infraccion);
-		    	System.out.println("Se ha annadido la fila identificada por " + row[0] + "\n");
+		    	//System.out.println("Se ha annadido la fila identificada por " + row[0] + "\n"); // TEST
 		    }
 			
 		} catch (FileNotFoundException e) {
@@ -49,14 +49,17 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		
 		LinkedList<VOMovingViolations> lista = new LinkedList<>();
 		
-		VOMovingViolations infraccion;
 		listaInfracciones.reiniciarRecorrido();
+		VOMovingViolations infraccion = listaInfracciones.darActual();
 		//for (VOMovingViolations infraccion : listaInfracciones) {
-		while (listaInfracciones.tieneSiguiente()) {
-			infraccion = listaInfracciones.avanzar();
-			if (infraccion.getViolationCode().equals(violationCode))
+		do {
+			System.out.println("\nMirando a la infraccion para mirar su violatiocode: " + infraccion.objectId());
+			System.out.println("El violation code de esta infraccion es: " + infraccion.getViolationCode());
+			if (infraccion.getViolationCode().equals(violationCode)) {
 				lista.anadir(infraccion);
-		}
+			}
+			infraccion = listaInfracciones.avanzar();
+		} while (listaInfracciones.tieneSiguiente());
 		
 		return lista;
 	}

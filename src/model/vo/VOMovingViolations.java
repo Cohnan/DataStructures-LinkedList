@@ -24,8 +24,8 @@ public class VOMovingViolations {
 	private String ROW_ID;
 	
 	public VOMovingViolations(String[] row) {
-		System.out.println("Se quiere annadir la infraccion identificada: " + row[0]);
-		objectId = extractInt(row[0]);
+		//System.out.println("Se quiere annadir la infraccion identificada: " + row[0]); // TEST
+		objectId = extractInt(row[0]); System.out.println("El objectId del nuevo nodo es: " + objectId);
 		ROW_ = row[1];
 		location = row[2];
 		ADDRESS_ID = extractInt(row[3]);
