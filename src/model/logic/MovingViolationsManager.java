@@ -20,12 +20,16 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 			reader = new CSVReader(new FileReader("data/Moving_Violations_Issued_in_January_2018.csv"));
 			listaInfracciones = new LinkedList<VOMovingViolations>(); // TODO handle header
 			VOMovingViolations infraccion;
+			reader.readNext();
 		    for (String[] row : reader) {
 		    	infraccion = new VOMovingViolations(row);
 		    	listaInfracciones.anadir(infraccion);
+		    	System.out.println("Se ha annadido la fila identificada por " + row[0] + "\n");
 		    }
 			
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		} finally{
 			if (reader != null) {

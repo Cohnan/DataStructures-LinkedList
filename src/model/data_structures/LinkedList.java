@@ -44,12 +44,14 @@ public class LinkedList<T> implements ILinkedList<T> {
 		if (tamano == 0) {
 			primero = new Node<T>(elemento);
 			tamano = 1;
+			ultimo = primero;
 			return;
 		}
 		
 		Node<T> ultimoViejo = ultimo;
-		ultimo = new Node(elemento);
+		ultimo = new Node<T>(elemento);
 		ultimoViejo.asignarSiguiente(ultimo);
+		System.out.println("Se ha annadido el nodo con elemento: " + elemento);
 		// ultimo.asignarAnterior(ultimoViejo);
 		
 		tamano++;

@@ -24,18 +24,19 @@ public class VOMovingViolations {
 	private String ROW_ID;
 	
 	public VOMovingViolations(String[] row) {
-		objectId = Integer.parseInt(row[0]);
+		System.out.println("Se quiere annadir la infraccion identificada: " + row[0]);
+		objectId = extractInt(row[0]);
 		ROW_ = row[1];
 		location = row[2];
-		ADDRESS_ID = Integer.parseInt(row[3]);
-		STREETSEGID = Integer.parseInt(row[4]);
+		ADDRESS_ID = extractInt(row[3]);
+		STREETSEGID = extractInt(row[4]);
 		XCOORD = Float.parseFloat(row[5]);
 		XCOORD = Float.parseFloat(row[6]);
 		TICKETTYPE = row[7];
-		FINEAMT = Integer.parseInt(row[8]);
-		totalPaid = Integer.parseInt(row[9]);
-		PENALTY1 = Integer.parseInt(row[10]);
-		PENALTY2 = Integer.parseInt(row[11]);
+		FINEAMT = extractInt(row[8]);
+		totalPaid = extractInt(row[9]);
+		PENALTY1 = extractInt(row[10]);
+		PENALTY2 = extractInt(row[11]);
 		accidentIndicator = row[12];
 		ticketIssueDate = row[13];
 		VIOLATIONCODE = row[14];
@@ -91,5 +92,10 @@ public class VOMovingViolations {
 	 */
 	public String  getViolationDescription() {
 		return violationDescription;
+	}
+	
+	private Integer extractInt(String str) {
+		if (str.equals("")) return -1;
+		return Integer.parseInt(str);
 	}
 }
