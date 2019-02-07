@@ -66,6 +66,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 		if (tamano == 0) return;
 		
 		Node<T> nodo = primero;
+		
 		for (int i = 0; i < tamano; i++) { // El dato puede que este mas de una vez
 			if (nodo.darDato().equals(dato)) { //TODO No se si solo queremos borrar cuando el dato sea el mismo objeto
 				if (tamano == 1) {
@@ -78,6 +79,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 					if (actual == primero) actual = primero.siguiente();
 					primero = primero.siguiente();
 					primero.quitarAnterior();
+					System.out.print("Este es el caso, nodo == primero");
 				}
 				else if(nodo == ultimo) {
 					if (actual == ultimo) actual = ultimo.anterior();

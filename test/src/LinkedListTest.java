@@ -136,8 +136,10 @@ class LinkedListTest {
 		LinkedList lista;
 		
 		for (int i = 0; i < listas.length; i++) {
-			lista = listas[i];
+			lista = listas[i]; // i es el tamano de la lista menos 1
+			System.out.println(i+1);
 			lista.eliminar("Elemento 1");
+			System.out.println("Lo puede hacer\n");
 			assertTrue(lista.darTamano() == i, "El tamano de la lista debio disminuir en 1.");
 			assertTrue(lista.darActual() != null, "Actual deberia existir.");
 		}
@@ -148,7 +150,15 @@ class LinkedListTest {
 	 */
 	@Test
 	void testRecuperarEnPos() {
-		fail("Not yet implemented");
+		LinkedList[] listas = {setUpEscenario1(), setUpEscenario2(), setUpEscenario3()};
+		LinkedList lista;
+		
+		for (int i = 0; i < listas.length; i++) {
+			lista = listas[i]; // i es el tamano de la lista menos 1
+			for (int j = 1; j < i+1; j++) {
+				assertTrue(lista.recuperarEnPos(j - 1).equals("Elemento " + j));
+			}
+		}
 	}
 
 	/**
