@@ -72,6 +72,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 			actualViejo = actualViejo.siguiente();
 		
 		Node<T> actualNuevo = new Node<T>(elemento);
+		if (actual == actualViejo) actual = actualNuevo;
 		actualNuevo.asignarAnterior(actualViejo.anterior());
 		actualNuevo.asignarSiguiente(actualViejo);
 		
@@ -96,15 +97,18 @@ public class LinkedList<T> implements ILinkedList<T> {
 					return;
 				} // Entonces el tamano es al menos 2
 				else if (nodo == primero) {
+					if (actual == primero) actual = primero.siguiente();
 					primero = primero.siguiente();
-					primero.quitarAnterior();  // Forma 1
+					primero.quitarAnterior();
 				}
 				else if(nodo == ultimo) {
+					if (actual == ultimo) actual = ultimo.anterior();
 					ultimo = ultimo.anterior();
-					ultimo.asignarSiguiente(null); // Forma 2
-				} else { // Aqui se llega solo si el tamano es al menos 3
+					ultimo.quitarSiguiente();
+				} else { // Aqui se llega solo si el tamano es al menos 3 y el nodo a eliminar no es un extremo
 					Node<T> nodoAnt = nodo.anterior();
-					nodo.anterior().asignarSiguiente(nodo.siguiente()); //TODO problematic?
+					if (actual == nodo) actual = nodo.siguiente();
+					nodoAnt.asignarSiguiente(nodo.siguiente()); //TODO problematic?
 					nodo = nodoAnt; //TODO problematic?
 				}
 				tamano--; //TODO Check if this works with the for loop
@@ -131,13 +135,16 @@ public class LinkedList<T> implements ILinkedList<T> {
 			return;
 		} // Entonces el tamano es al menos 2
 		else if (nodo == primero) {
+			if (actual == primero) actual = primero.siguiente();
 			primero = primero.siguiente();
 			primero.quitarAnterior(); 
 		}
 		else if(nodo == ultimo) {
+			if (actual == ultimo) actual = ultimo.anterior();
 			ultimo = ultimo.anterior();
 			ultimo.quitarSiguiente(); 
-		} else { // Aqui se llega solo si el tamano es al menos 3
+		} else { // Aqui se llega solo si el tamano es al menos 3 y el nodo no es un extremo
+			if (actual == nodo) actual = nodo.siguiente();
 			(nodo.anterior()).asignarSiguiente(nodo.siguiente()); //TODO problematic?
 		}
 		tamano--;
@@ -164,6 +171,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 
 	@Override
 	public T darActual() {
+		if (actual == null) throw new UnsupportedOperationException("El elemento no existe.");
 		return actual.darDato();
 	}
 

@@ -51,7 +51,16 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		LinkedList<VOMovingViolations> lista = new LinkedList<>();
 		
 		listaInfracciones.reiniciarRecorrido();
-		VOMovingViolations infraccion = listaInfracciones.darActual();
+		VOMovingViolations infraccion;
+		try {
+			infraccion = listaInfracciones.darActual();
+		} catch (Exception e) {
+			if (listaInfracciones.darTamano() != 0) {
+				e.printStackTrace();
+			}
+			
+			return new LinkedList<VOMovingViolations>();
+		}
 		//for (VOMovingViolations infraccion : listaInfracciones) {
 		while (true) {
 			//System.out.println("\nMirando a la infraccion para mirar su violatiocode: " + infraccion.objectId()); // TEST
@@ -72,7 +81,16 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		LinkedList<VOMovingViolations> lista = new LinkedList<>();
 
 		listaInfracciones.reiniciarRecorrido();
-		VOMovingViolations infraccion = listaInfracciones.darActual();
+		VOMovingViolations infraccion;
+		try {
+			infraccion = listaInfracciones.darActual();
+		} catch (Exception e) {
+			if (listaInfracciones.darTamano() != 0) {
+				e.printStackTrace();
+			}
+			
+			return new LinkedList<VOMovingViolations>();
+		}
 
 		while (true) {
 			if (infraccion.getAccidentIndicator().equals(accidentIndicator)) {

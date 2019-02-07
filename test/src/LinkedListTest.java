@@ -91,8 +91,12 @@ class LinkedListTest {
 	void testLinkedList() {
 		LinkedList lista = setUpEscenario0();
 		
-		assertTrue(0 == lista.darTamano(), "El tamano deberia ser 0");
-		
+		assertTrue(lista.darTamano() == 0, "El tamano deberia ser 0");
+		try {
+			lista.darActual();
+		} catch(UnsupportedOperationException e) {
+			// Debe llegar aca
+		}
 	}
 
 	/**
@@ -108,7 +112,18 @@ class LinkedListTest {
 	 */
 	@Test
 	void testAnadir() {
-		fail("Not yet implemented");
+		LinkedList[] listas = {setUpEscenario0(), setUpEscenario1(), setUpEscenario2(), setUpEscenario3()};
+		LinkedList lista;
+		
+		for (int i = 0; i < listas.length; i++) {
+			lista = listas[i];
+			lista.anadir("Elemento anadido");
+			assertTrue(lista.darTamano() == i + 1, "El tamano de la lista debio aumentar en 1.");
+			Object dato = lista.darActual();
+			if (i == 0) {
+				assertTrue(dato.equals("Elemento anadido"), "El elemento en la lista deberia ser el recien agregado");
+			}
+		}
 	}
 
 	/**
@@ -116,7 +131,26 @@ class LinkedListTest {
 	 */
 	@Test
 	void testAnadirEn() {
-		fail("Not yet implemented");
+		LinkedList[] listas = {setUpEscenario0(), setUpEscenario1(), setUpEscenario2(), setUpEscenario3()};
+		LinkedList lista;
+		
+		for (int i = 0; i < listas.length; i++) {
+			for (int j = 0; j < i; j++) {
+				//System.out.println(i+" "+j);
+				lista = listas[i];
+				lista.anadirEn(j, "Elemento anadido");
+				assertTrue(lista.darTamano() == i + 1, "El tamano de la lista debio aumentar en 1.");
+				System.out.println("Recuperar: " + lista.recuperarEnPos(j));
+				//System.out.println("Actual:"+lista.darActual());
+				//lista.avanzar();
+				//System.out.println("Actual luego de avanzar:" + lista.darActual());
+				assertTrue(lista.recuperarEnPos(j).equals("Elemento anadido"), "El elemento en la posicion " + j+ " deberia ser el recien anadido.");
+			
+				Object dato = lista.darActual();
+				assertTrue(dato.equals("Elemento anadido"), "El elemento en la lista deberia ser el recien agregado");
+				
+			}
+		}
 	}
 
 	/**
