@@ -122,7 +122,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 		Node<T> nodo = primero;
 		for (int k = 0; k < i; k++) {
 			nodo = nodo.siguiente();
-		}
+		} // nodo es el nodo en la posicion i
 		
 		if (tamano == 1) {
 			primero = null;
@@ -132,11 +132,11 @@ public class LinkedList<T> implements ILinkedList<T> {
 		} // Entonces el tamano es al menos 2
 		else if (nodo == primero) {
 			primero = primero.siguiente();
-			primero.quitarAnterior();  // Forma 1
+			primero.quitarAnterior(); 
 		}
 		else if(nodo == ultimo) {
 			ultimo = ultimo.anterior();
-			ultimo.asignarSiguiente(null); // Forma 2
+			ultimo.quitarSiguiente(); 
 		} else { // Aqui se llega solo si el tamano es al menos 3
 			(nodo.anterior()).asignarSiguiente(nodo.siguiente()); //TODO problematic?
 		}
