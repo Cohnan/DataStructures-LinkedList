@@ -18,9 +18,10 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		CSVReader reader = null;
 		try {
 			reader = new CSVReader(new FileReader("data/Moving_Violations_Issued_in_January_2018.csv"));
-			listaInfracciones = new LinkedList<VOMovingViolations>(); // TODO handle header
+			listaInfracciones = new LinkedList<VOMovingViolations>(); 
 			VOMovingViolations infraccion;
-			reader.readNext();
+			System.out.println(reader.readNext()[0]); // Handle header
+			
 		    for (String[] row : reader) {
 		    	infraccion = new VOMovingViolations(row);
 		    	listaInfracciones.anadir(infraccion);
@@ -52,14 +53,15 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 		listaInfracciones.reiniciarRecorrido();
 		VOMovingViolations infraccion = listaInfracciones.darActual();
 		//for (VOMovingViolations infraccion : listaInfracciones) {
-		do {
+		while (true) {
 			//System.out.println("\nMirando a la infraccion para mirar su violatiocode: " + infraccion.objectId()); // TEST
 			//System.out.println("El violation code de esta infraccion es: " + infraccion.getViolationCode()); // TEST
 			if (infraccion.getViolationCode().equals(violationCode)) {
 				lista.anadir(infraccion);
 			}
+			if (!listaInfracciones.tieneSiguiente()) break;
 			infraccion = listaInfracciones.avanzar();
-		} while (listaInfracciones.tieneSiguiente());
+		}
 		
 		return lista;
 	}
@@ -67,18 +69,18 @@ public class MovingViolationsManager implements IMovingViolationsManager {
 	@Override
 	public LinkedList <VOMovingViolations> getMovingViolationsByAccident(String accidentIndicator) {
 		
-LinkedList<VOMovingViolations> lista = new LinkedList<>();
-		
+		LinkedList<VOMovingViolations> lista = new LinkedList<>();
+
 		listaInfracciones.reiniciarRecorrido();
 		VOMovingViolations infraccion = listaInfracciones.darActual();
-		//for (VOMovingViolations infraccion : listaInfracciones) {
-		do {
-			
+
+		while (true) {
 			if (infraccion.getAccidentIndicator().equals(accidentIndicator)) {
 				lista.anadir(infraccion);
 			}
+			if (!listaInfracciones.tieneSiguiente()) break;
 			infraccion = listaInfracciones.avanzar();
-		} while (listaInfracciones.tieneSiguiente());
+		}
 		
 		return lista;
 	}	

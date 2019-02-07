@@ -29,11 +29,12 @@ public class MovingViolationsManagerView
 					System.out.println("Ingrese el c�digo de la infracci�n:");
 					String violationCode = sc.next();
 					LinkedList<VOMovingViolations> violationsByCodeList = Controller.getMovingViolationsByViolationCode (violationCode);
-					System.out.println("Se encontraron "+ violationsByCodeList.darTamano() + " elementos");
+					//System.out.println("Se encontraron "+ violationsByCodeList.darTamano() + " elementos");
 					for (VOMovingViolations violations : violationsByCodeList) 
 					{
 						System.out.println(violations.objectId() + " " + violations.getLocation() + " " + violations.getTicketIssueDate()+ " " + violations.getTotalPaid() + " " + violations.getAccidentIndicator()+ " " + violations.getViolationDescription());// + " " + violations.getViolationCode());;
 					}
+					System.out.println("Se encontraron "+ violationsByCodeList.darTamano() + " elementos");
 					break;
 					
 				case 3:
