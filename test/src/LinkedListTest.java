@@ -174,7 +174,13 @@ class LinkedListTest {
 	 */
 	@Test
 	void testAvanzar() {
-		fail("Not yet implemented");
+		LinkedList[] listas = {setUpEscenario2(), setUpEscenario3()};
+		LinkedList lista;
+		
+		for (int i = 0; i < listas.length; i++) {
+			lista = listas[i];
+			assertTrue(lista.avanzar().equals("Elemento 2"), "No avanza correctamente");
+		}
 	}
 
 	/**
@@ -182,7 +188,14 @@ class LinkedListTest {
 	 */
 	@Test
 	void testRetroceder() {
-		fail("Not yet implemented");
+		LinkedList[] listas = {setUpEscenario2(), setUpEscenario3()};
+		LinkedList lista;
+		
+		for (int i = 0; i < listas.length; i++) {
+			lista = listas[i];
+			lista.avanzar();
+			assertTrue(lista.retroceder().equals("Elemento 1"), "No retrocede correctamente");
+		}
 	}
 
 	/**
