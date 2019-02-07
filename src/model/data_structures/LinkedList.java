@@ -61,28 +61,6 @@ public class LinkedList<T> implements ILinkedList<T> {
 
 
 	@Override
-	public void anadirEn(int i, T elemento) { //Hacer que el i-esimo elemento, empezando en 0, sea el nuevo elemento
-		if (i > tamano || i < 0) throw new IllegalArgumentException("No es posible anadir en esta posicion");
-		
-		if (i == tamano) {anadir(elemento); tamano++; return;}
-		
-		Node<T> actualViejo = primero;
-		// Al terminar el for, viejoActual es el nodo que actualmente esta en la posicion i (empezando en 0)
-		for (int k = 0; k < i; k++) 
-			actualViejo = actualViejo.siguiente();
-		
-		Node<T> actualNuevo = new Node<T>(elemento);
-		//if (actual == actualViejo) actual = actualNuevo;
-		actualNuevo.asignarAnterior(actualViejo.anterior());
-		actualNuevo.asignarSiguiente(actualViejo);
-		
-		/*viejoActual.anterior().asignarSiguiente(nuevoActual);
-		viejoActual.siguiente().asignarAnterior(nuevoActual);*/
-		tamano++;
-	}
-
-
-	@Override
 	// Debe ser posible implementar este metodo con eliminarEn, pero este lo implemente primero
 	public void eliminar(T dato) {
 		if (tamano == 0) return;
@@ -118,37 +96,6 @@ public class LinkedList<T> implements ILinkedList<T> {
 		}
 	}
 
-
-	@Override
-	public void eliminarEn(int i) {
-		if (i >= tamano || i < 0) throw new IllegalArgumentException("No es posible encontrar esa posicion");
-		
-		Node<T> nodo = primero;
-		for (int k = 0; k < i; k++) {
-			nodo = nodo.siguiente();
-		} // nodo es el nodo en la posicion i
-		
-		if (tamano == 1) {
-			primero = null;
-			ultimo = null;
-			tamano = 0;
-			return;
-		} // Entonces el tamano es al menos 2
-		else if (nodo == primero) {
-			if (actual == primero) actual = primero.siguiente();
-			primero = primero.siguiente();
-			primero.quitarAnterior(); 
-		}
-		else if(nodo == ultimo) {
-			if (actual == ultimo) actual = ultimo.anterior();
-			ultimo = ultimo.anterior();
-			ultimo.quitarSiguiente(); 
-		} else { // Aqui se llega solo si el tamano es al menos 3 y el nodo no es un extremo
-			if (actual == nodo) actual = nodo.siguiente();
-			(nodo.anterior()).asignarSiguiente(nodo.siguiente()); //TODO problematic?
-		}
-		tamano--;
-	}
 
 	@Override
 	public T recuperarEnPos(int i) {

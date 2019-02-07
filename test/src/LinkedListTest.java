@@ -126,46 +126,12 @@ class LinkedListTest {
 		}
 	}
 
-	/**
-	 * Test method for {@link model.data_structures.LinkedList#anadirEn(int, java.lang.Object)}.
-	 */
-	@Test
-	void testAnadirEn() {
-		LinkedList[] listas = {setUpEscenario0(), setUpEscenario1(), setUpEscenario2(), setUpEscenario3()};
-		LinkedList lista;
-		
-		for (int i = 0; i < listas.length; i++) {
-			for (int j = 0; j < i; j++) {
-				System.out.println(i+" "+j);
-				lista = listas[i];
-				lista.anadirEn(j, "Elemento anadido");
-				assertTrue(lista.darTamano() == i + 1, "El tamano de la lista debio aumentar en 1.");
-				System.out.println("Recuperar: " + lista.recuperarEnPos(j));
-				System.out.println("Actual:"+lista.darActual());
-				lista.retroceder();
-				System.out.println("Actual luego de retroceder:" + lista.darActual());
-				assertTrue(lista.recuperarEnPos(j).equals("Elemento anadido"), "El elemento en la posicion " + j+ " deberia ser el recien anadido.");
-			
-				Object dato = lista.darActual();
-				assertTrue(dato.equals("Elemento anadido"), "El elemento en la lista deberia ser el recien agregado");
-				
-			}
-		}
-	}
 
 	/**
 	 * Test method for {@link model.data_structures.LinkedList#eliminar(java.lang.Object)}.
 	 */
 	@Test
 	void testEliminar() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link model.data_structures.LinkedList#eliminarEn(int)}.
-	 */
-	@Test
-	void testEliminarEn() {
 		fail("Not yet implemented");
 	}
 
