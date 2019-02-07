@@ -30,7 +30,7 @@ class LinkedListTest {
 	// Lista con 1 elemento
 	private LinkedList<String> setUpEscenario1 () {
 		LinkedList<String> lista = new LinkedList<> ();
-		lista.anadir("Unico elemento");
+		lista.anadir("Elemento 1");
 		
 		return lista;
 	}
@@ -38,8 +38,8 @@ class LinkedListTest {
 	// Lista con 2 elementos
 	private LinkedList<String> setUpEscenario2 () {
 		LinkedList<String> lista = new LinkedList<> ();
-		lista.anadir("Elemento 1/2");
-		lista.anadir("Elemento 2/2");
+		lista.anadir("Elemento 1");
+		lista.anadir("Elemento 2");
 		
 		return lista;
 	}
@@ -47,9 +47,9 @@ class LinkedListTest {
 	// Lista con 3 elementos
 	private LinkedList<String> setUpEscenario3 () {
 		LinkedList<String> lista = new LinkedList<> ();
-		lista.anadir("Elemento 1/3");
-		lista.anadir("Elemento 2/3");
-		lista.anadir("Elemento 3/3");
+		lista.anadir("Elemento 1");
+		lista.anadir("Elemento 2");
+		lista.anadir("Elemento 3");
 		
 		return lista;
 	}
@@ -132,7 +132,15 @@ class LinkedListTest {
 	 */
 	@Test
 	void testEliminar() {
-		fail("Not yet implemented");
+		LinkedList[] listas = {setUpEscenario1(), setUpEscenario2(), setUpEscenario3()};
+		LinkedList lista;
+		
+		for (int i = 0; i < listas.length; i++) {
+			lista = listas[i];
+			lista.eliminar("Elemento 1");
+			assertTrue(lista.darTamano() == i, "El tamano de la lista debio disminuir en 1.");
+			assertTrue(lista.darActual() != null, "Actual deberia existir.");
+		}
 	}
 
 	/**
