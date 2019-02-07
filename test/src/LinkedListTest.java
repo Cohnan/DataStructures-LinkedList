@@ -166,7 +166,15 @@ class LinkedListTest {
 	 */
 	@Test
 	void testReiniciarRecorrido() {
-		fail("Not yet implemented");
+		LinkedList[] listas = { setUpEscenario2(), setUpEscenario3()};
+		LinkedList lista;
+		
+		for (int i = 0; i < listas.length; i++) {
+			lista = listas[i];
+			lista.avanzar();
+			lista.reiniciarRecorrido();
+			assertTrue(lista.darActual().equals("Elemento 1"), "No reinicia correctamente");
+		}
 	}
 
 	/**
