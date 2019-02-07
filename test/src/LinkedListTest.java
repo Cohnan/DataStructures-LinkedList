@@ -136,14 +136,14 @@ class LinkedListTest {
 		
 		for (int i = 0; i < listas.length; i++) {
 			for (int j = 0; j < i; j++) {
-				//System.out.println(i+" "+j);
+				System.out.println(i+" "+j);
 				lista = listas[i];
 				lista.anadirEn(j, "Elemento anadido");
 				assertTrue(lista.darTamano() == i + 1, "El tamano de la lista debio aumentar en 1.");
 				System.out.println("Recuperar: " + lista.recuperarEnPos(j));
-				//System.out.println("Actual:"+lista.darActual());
-				//lista.avanzar();
-				//System.out.println("Actual luego de avanzar:" + lista.darActual());
+				System.out.println("Actual:"+lista.darActual());
+				lista.retroceder();
+				System.out.println("Actual luego de retroceder:" + lista.darActual());
 				assertTrue(lista.recuperarEnPos(j).equals("Elemento anadido"), "El elemento en la posicion " + j+ " deberia ser el recien anadido.");
 			
 				Object dato = lista.darActual();

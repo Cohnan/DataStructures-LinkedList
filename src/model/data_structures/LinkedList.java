@@ -72,7 +72,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 			actualViejo = actualViejo.siguiente();
 		
 		Node<T> actualNuevo = new Node<T>(elemento);
-		if (actual == actualViejo) actual = actualNuevo;
+		//if (actual == actualViejo) actual = actualNuevo;
 		actualNuevo.asignarAnterior(actualViejo.anterior());
 		actualNuevo.asignarSiguiente(actualViejo);
 		
